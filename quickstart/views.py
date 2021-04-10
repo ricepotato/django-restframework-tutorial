@@ -10,6 +10,9 @@ from quickstart.serializers import (
 )
 
 # Create your views here.
+class UserReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializerHyperLink
 
 
 class UserList(generics.ListAPIView):
