@@ -3,24 +3,28 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers, viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from quickstart.serializers import UserSerializer, GroupSerializer
+from quickstart.serializers import (
+    UserSerializer,
+    GroupSerializer,
+    UserSerializerHyperLink,
+)
 
 # Create your views here.
 
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSerializerHyperLink
 
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSerializerHyperLink
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("-date_joined")
-    serializer_class = UserSerializer
+    serializer_class = UserSerializerHyperLink
     permission_classes = [permissions.IsAuthenticated]
 
 
