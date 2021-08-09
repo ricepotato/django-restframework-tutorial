@@ -45,7 +45,7 @@ class SnippetViewSet(viewsets.ModelViewSet):
         return Response(snippet.highlighted)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.requset.user)
+        serializer.save(owner=self.request.user)
 
 
 class SnippetHighlight(generics.GenericAPIView):

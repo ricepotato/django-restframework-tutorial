@@ -7,7 +7,14 @@ from snippets import views
 
 router = DefaultRouter()
 router.register("snippets", views.SnippetViewSet)
-urlpatterns = [path("", include(router.urls))]
+urlpatterns = [
+    path("", include(router.urls)),
+    path(
+        "snippets/<int:pk>/highlight/",
+        views.SnippetHighlight.as_view(),
+        name="snippet-highlight",
+    ),
+]
 
 """urlpatterns = [
     path("", views.api_root),
